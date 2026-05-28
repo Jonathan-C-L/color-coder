@@ -1,0 +1,23 @@
+{
+  "name": "color-coder",
+  "version": "1.0.0",
+  "description": "google chrome extension to allow user to extract a color palette from the browser",
+  "homepage": "https://github.com/Jonathan-C-L/color-coder#readme",
+  "bugs": {
+    "url": "https://github.com/Jonathan-C-L/color-coder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonathan-C-L/color-coder.git"
+  },
+  "license": "ISC",
+  "author": "Jonathan Le",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
