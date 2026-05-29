@@ -7,13 +7,16 @@
     "type": "module"
   },
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "popup.html",
     "default_title": "Color Coder",
     "default_icon": "favicon.svg"
   },
-  
+  "side_panel": {
+    "default_path": "index.html"
+  },
   "permissions": [
-    "scripting"
+    "scripting",
+    "sidePanel"
   ],
   "host_permissions": [
     "http://*/*",
