@@ -4,12 +4,8 @@
   "version": "1.0",
   "manifest_version": 3,
   "background":{
+    "service_worker": "service-worker.js",
     "type": "module"
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Color Coder",
-    "default_icon": "favicon.svg"
   },
   "side_panel": {
     "default_path": "index.html"
