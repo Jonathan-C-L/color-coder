@@ -1,0 +1,22 @@
+{
+  "name": "Color Coder",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background":{
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Color Coder",
+    "default_icon": "favicon.svg"
+  },
+  
+  "permissions": [
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ]
+}
