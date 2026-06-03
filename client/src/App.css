@@ -182,3 +182,61 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* Toggle switch */
+/* Toggle switch credits: https://codepen.io/hktechhub/pen/Ggqpexx */
+/* * {
+  box-sizing: border-box;
+}
+body {
+  background: #0f1116;
+  color: #fff;
+  font-family: system-ui;
+  padding: 50px;
+  width: fit-content;
+} */
+.hk-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.hk-toggle span {
+  font-size: x-small;
+  opacity: 0.8;
+  font-weight: bolder;
+}
+
+.hk-toggle input {
+  display: none;
+}
+.hk-toggle label {
+  width: 78px;
+  height: 38px;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.hk-toggle label::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  transition: 0.35s;
+}
+.hk-tg-2 label {
+  background: #3a3f45;
+}
+.hk-tg-2 label::after {
+  background: #fff;
+}
+.hk-tg-2 input:checked + label {
+  background: #34c759;
+}
+.hk-tg-2 input:checked + label::after {
+  transform: translateX(38px);
+}
