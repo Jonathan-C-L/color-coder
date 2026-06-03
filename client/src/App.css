@@ -70,6 +70,21 @@
   }
 }
 
+#viewport {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
@@ -186,21 +201,10 @@
 
 /* Toggle switch */
 /* Toggle switch credits: https://codepen.io/hktechhub/pen/Ggqpexx */
-/* * {
-  box-sizing: border-box;
-}
-body {
-  background: #0f1116;
-  color: #fff;
-  font-family: system-ui;
-  padding: 50px;
-  width: fit-content;
-} */
 .hk-toggle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 }
 .hk-toggle span {
   font-size: x-small;
