@@ -1,11 +1,11 @@
 import { Toggle } from './components/Toggle';
-import { Main } from './components/Main'; 
+import { Export } from './components/Export'; 
 import { ViewPort } from './components/ViewPort';
-import { useCount } from './hooks/useCount';
+import { Palette } from './components/Palette';
 import './App.css';
 
 function App() {
-  const { count, setCount } = useCount();
+  // const { count, setCount } = useCount();
 
 
 
@@ -13,10 +13,8 @@ function App() {
     <>
       <Toggle />
       <ViewPort />
-      <Main count={count} setCount={setCount} />
-
-      <div className="ticks"></div>
-
+      <Palette />
+      <Export />
     </>
   )
 };

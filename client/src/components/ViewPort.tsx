@@ -1,7 +1,9 @@
 export const ViewPort = () => {
     return (
-        <canvas id="viewport">
-            ViewPort Display
-        </canvas>
+        <main className="container">
+            <canvas id="viewport">
+                {/* Viewport content will be rendered here */}
+            </canvas>
+        </main>
     );
 };
