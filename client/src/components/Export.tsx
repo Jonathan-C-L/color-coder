@@ -5,12 +5,9 @@
 
 export const Export = () => {
     return (
-        <section id="center" className="container">
-            <button
-            type="button"
-            className="export"
-            >
-            Export Palette
+        <section id="export" className="container">
+            <button type="button">
+                Export Palette
             </button>
         </section>
     );

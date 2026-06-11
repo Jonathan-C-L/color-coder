@@ -1,4 +1,4 @@
-.export {
+button {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -6,7 +6,6 @@
   background: var(--accent-bg);
   border: 2px solid transparent;
   transition: border-color 0.3s;
-  margin-bottom: 24px;
 
   &:hover {
     border-color: var(--accent-border);
@@ -16,7 +15,9 @@
     outline-offset: 2px;
   }
 }
-
+#export {
+  justify-content: start; 
+}
 .hero {
   position: relative;
 
@@ -56,22 +57,18 @@
   }
 }
 
-.container, #palette {
+.container, #viewport, #palette {
   display: flex;
   flex-direction: column;
   gap: 25px;
   place-content: center;
-  place-items: center;
   flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  padding: 18px 20px 0;
+  gap: 18px;
 }
 
 /* DON'T LIKE THIS REPEATED PALETTE ID - PLEASE FIX */
-#viewport, #palette {
+.display {
   border: 2px solid #ffffff;
   border-radius: 8px;
 }
@@ -187,51 +184,4 @@
     right: 0;
     border-right-color: var(--border);
   }
-}
-
-
-/* Toggle switch */
-/* Toggle switch credits: https://codepen.io/hktechhub/pen/Ggqpexx */
-.hk-toggle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.hk-toggle span {
-  font-size: x-small;
-  opacity: 0.8;
-  font-weight: bolder;
-}
-
-.hk-toggle input {
-  display: none;
-}
-.hk-toggle label {
-  width: 78px;
-  height: 38px;
-  border-radius: 40px;
-  position: relative;
-  cursor: pointer;
-}
-.hk-toggle label::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  border-radius: 50%;
-  transition: 0.35s;
-}
-.hk-tg-2 label {
-  background: #3a3f45;
-}
-.hk-tg-2 label::after {
-  background: #fff;
-}
-.hk-tg-2 input:checked + label {
-  background: #34c759;
-}
-.hk-tg-2 input:checked + label::after {
-  transform: translateX(38px);
 }

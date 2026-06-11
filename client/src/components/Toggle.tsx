@@ -1,11 +1,9 @@
 export const Toggle = () => {
     return (
-        <section id="toggle" className="container">
-            <div className="hk-toggle hk-tg-2">
-            <span>Color Capture</span>
-            <input type="checkbox" id="tg2"/>
-            <label htmlFor="tg2"></label>
-            </div>
+        <section id="toggle">
+            <button type="button">
+                Capture Colors
+            </button>
         </section>
     );
 };
