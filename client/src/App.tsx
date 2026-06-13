@@ -1,5 +1,5 @@
 import './App.css';
-import { Export } from './components/Export'; 
+// import { Export } from './components/Export'; 
 // import { ViewPort } from './components/ViewPort';
 import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
@@ -16,9 +16,17 @@ type DropperError = {
 //   isError(err) && !err.canceled
 
 const App = () => {
-  const { open, isSupported } = useEyeDropper()
-  const [color, setColor] = useState('#fff')
-  const [error, setError] = useState()
+  const colors: string[] = [];
+
+  const resetPalette = () => {
+    colors.length = 0;
+    console.log(colors);
+  };
+
+  const { open, isSupported } = useEyeDropper();
+  const [color, setColor] = useState<string>('#fff');
+  const [error, setError] = useState<DropperError | null>(null);
+
   // useEyeDropper will reject/cleanup the open() promise on unmount,
   // so setState never fires when the component is unmounted.
   const pickColor = useCallback(() => {
@@ -26,14 +34,15 @@ const App = () => {
     const openPicker = async () => {
       try {
         const color = await open();
-        console.log(color);
         setColor(color.sRGBHex);
-      } catch (e: DropperError | any) {
-        console.log(e);
+        colors.push(color.sRGBHex);
+        console.log(colors);
 
+      } catch (e: DropperError | any) {
         // Ensures component is still mounted
         // before calling setState
         if (!e.canceled) setError(e);
+        if (error) return;
       }
     };
     openPicker();
@@ -41,14 +50,22 @@ const App = () => {
 
   return (
     <>
-      {/* <ViewPort /> */}
-      <div style={{ padding: '64px', background: color }}>Selected color</div>
-      {isSupported() ?
+      {/* Color selection */}
+      <div style={{ padding: '64px', background: color }}></div>
+      {isSupported() ?  
+          // Could maybe make this a  
           <button onClick={pickColor}>Pick color</button>
         : <span>EyeDropper API not supported in this browser</span>
       }
-      {!!error && <div>{Error(error).message}</div>}
-      <Export />
+      
+      {/* Palette */}
+
+      {/* <Export /> */}
+      <section id="export" className="container">
+        <button type="button" onClick={resetPalette}>
+            Export Palette
+        </button>
+      </section>
     </>
   )
 };
