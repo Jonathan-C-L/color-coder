@@ -57,7 +57,7 @@ button {
   }
 }
 
-.container, #viewport, #palette {
+.container, .display {
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -67,7 +67,6 @@ button {
   gap: 18px;
 }
 
-/* DON'T LIKE THIS REPEATED PALETTE ID - PLEASE FIX */
 .display {
   border: 2px solid #ffffff;
   border-radius: 8px;

@@ -15,7 +15,8 @@
   },
   "permissions": [
     "scripting",
-    "sidePanel"
+    "sidePanel",
+    "activeTab"
   ],
   "host_permissions": [
     "http://*/*",
