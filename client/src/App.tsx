@@ -6,7 +6,6 @@ import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
 
 // Global variables
-const colors: string[] = [];
 
 type DropperError = { 
   message: string
@@ -19,17 +18,18 @@ type DropperError = {
 // const isNotCanceled = <T, >(err: DropperError | T): err is DropperError =>
 //   isError(err) && !err.canceled
 
-const resetPalette = () => {
-    colors.length = 0;
-    console.log(colors);
-};
-
 const App = () => {
   const { open, isSupported } = useEyeDropper();
 
   // Hooks
   const [color, setColor] = useState<string>('#ffffff');
   const [error, setError] = useState<DropperError | null>(null);
+  const [paletteColors, setPaletteColors] = useState<string[]>([]);
+
+  // Callbacks
+  const resetPalette = useCallback(() => {
+    setPaletteColors([]);
+  }, [paletteColors]);
 
   // useEyeDropper will reject/cleanup the open() promise on unmount,
   // so setState never fires when the component is unmounted.
@@ -38,15 +38,19 @@ const App = () => {
     const openPicker = async () => {
       try {
         const color = await open();
+        // Display selected color
         setColor(color.sRGBHex);
-        colors.push(color.sRGBHex);
-        console.log(colors);
+        // Add color to palette
+        setPaletteColors(prev => [...prev, color.sRGBHex]);
+
+        console.log(paletteColors); // Diagnostics
 
       } catch (e: DropperError | any) {
         // Ensures component is still mounted
         // before calling setState
         if (!e.canceled) setError(e);
-        if (error) return;
+        // Here just to satisfy the linter, but this should never be hit since the error state is only set if the component is still mounted.
+        if (error) return; 
       }
     };
     openPicker();
@@ -57,13 +61,12 @@ const App = () => {
       {/* Color selection */}
       <div style={{ padding: '64px', background: color }}>{color}</div>
       {isSupported() ?  
-          // Could maybe make this a  
           <button onClick={pickColor}>Pick color</button>
         : <span>EyeDropper API not supported in this browser</span>
       }
       
       {/* Palette */}
-      <Palette paletteColors={colors} />
+      <Palette paletteColors={paletteColors} />
 
       {/* <Export /> */}
       <section id="export" className="container">
