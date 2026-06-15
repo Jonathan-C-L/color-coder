@@ -1,8 +1,12 @@
 import './App.css';
 // import { Export } from './components/Export'; 
 // import { ViewPort } from './components/ViewPort';
+import { Palette } from './components/Palette';
 import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
+
+// Global variables
+const colors: string[] = [];
 
 type DropperError = { 
   message: string
@@ -15,16 +19,16 @@ type DropperError = {
 // const isNotCanceled = <T, >(err: DropperError | T): err is DropperError =>
 //   isError(err) && !err.canceled
 
-const App = () => {
-  const colors: string[] = [];
-
-  const resetPalette = () => {
+const resetPalette = () => {
     colors.length = 0;
     console.log(colors);
-  };
+};
 
+const App = () => {
   const { open, isSupported } = useEyeDropper();
-  const [color, setColor] = useState<string>('#fff');
+
+  // Hooks
+  const [color, setColor] = useState<string>('#ffffff');
   const [error, setError] = useState<DropperError | null>(null);
 
   // useEyeDropper will reject/cleanup the open() promise on unmount,
@@ -51,7 +55,7 @@ const App = () => {
   return (
     <>
       {/* Color selection */}
-      <div style={{ padding: '64px', background: color }}></div>
+      <div style={{ padding: '64px', background: color }}>{color}</div>
       {isSupported() ?  
           // Could maybe make this a  
           <button onClick={pickColor}>Pick color</button>
@@ -59,6 +63,7 @@ const App = () => {
       }
       
       {/* Palette */}
+      <Palette paletteColors={colors} />
 
       {/* <Export /> */}
       <section id="export" className="container">
