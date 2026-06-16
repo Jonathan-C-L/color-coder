@@ -11,6 +11,10 @@ type DropperError = {
   message: string
   canceled?: boolean
 }
+type PaletteColors = {
+  colors: string[];
+}
+
 
 // const isError = <T, >(err: DropperError | T): err is DropperError => 
 //   !!err && err instanceof Error && !!err.message
@@ -24,7 +28,7 @@ const App = () => {
   // Hooks
   const [color, setColor] = useState<string>('#ffffff');
   const [error, setError] = useState<DropperError | null>(null);
-  const [paletteColors, setPaletteColors] = useState<string[]>([]);
+  const [paletteColors, setPaletteColors] = useState<PaletteColors['colors']>([]);
 
   // Callbacks
   const resetPalette = useCallback(() => {
@@ -41,9 +45,11 @@ const App = () => {
         // Display selected color
         setColor(color.sRGBHex);
         // Add color to palette
-        setPaletteColors(prev => [...prev, color.sRGBHex]);
-
-        console.log(paletteColors); // Diagnostics
+        setPaletteColors(prev => {
+          const updated =[...prev, color.sRGBHex];
+          console.log(updated); // Diagnostics
+          return updated;
+        });
 
       } catch (e: DropperError | any) {
         // Ensures component is still mounted
