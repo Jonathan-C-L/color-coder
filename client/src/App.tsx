@@ -1,6 +1,5 @@
 import './App.css';
 // import { Export } from './components/Export'; 
-// import { ViewPort } from './components/ViewPort';
 import convert from 'color-convert';
 import type { PaletteColors, Color } from './types/Colors';
 import type { DropperError } from './types/DropperError';
@@ -8,13 +7,6 @@ import { Palette } from './components/Palette';
 import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
 import { jsPDF } from 'jspdf';
-
-
-// const isError = <T, >(err: DropperError | T): err is DropperError => 
-//   !!err && err instanceof Error && !!err.message
-
-// const isNotCanceled = <T, >(err: DropperError | T): err is DropperError =>
-//   isError(err) && !err.canceled
 
 const App = () => {
   const { open, isSupported } = useEyeDropper();

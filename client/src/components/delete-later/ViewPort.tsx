@@ -1,5 +1,4 @@
-import { Toggle } from "./Toggle";
-// import { Palette } from "./Palette";
+import { Toggle } from "../Toggle";
 
 export const ViewPort = () => {
     return (
@@ -8,7 +7,6 @@ export const ViewPort = () => {
             <canvas id="viewport" className="display">
                 {/* Viewport content will be rendered here */}
             </canvas>
-            {/* <Palette /> */}
         </main>
     );
 };
