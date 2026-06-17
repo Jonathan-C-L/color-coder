@@ -6,7 +6,7 @@ export const Palette = ({ paletteColors }: PaletteProps) => {
     return (
         <div id="palette" className="display">
             {paletteColors.map((color, index) => (
-                <div key={index} style={{ background: color }}>
+                <div className="color-codes" key={index} style={{ background: color }}>
                     {color}
                 </div>
             ))}

@@ -33,7 +33,7 @@ const App = () => {
   // Callbacks
   const resetPalette = useCallback(() => {
     setPaletteColors([]);
-  }, [paletteColors]);
+  }, []);
 
   // useEyeDropper will reject/cleanup the open() promise on unmount,
   // so setState never fires when the component is unmounted.
@@ -65,21 +65,23 @@ const App = () => {
   return (
     <>
       {/* Color selection */}
-      <div style={{ padding: '64px', background: color }}>{color}</div>
+      <div className="color-codes" style={{ background: color }}>
+        {color}
+      </div>
+
+      {/* Color picker */}
       {isSupported() ?  
-          <button onClick={pickColor}>Pick color</button>
-        : <span>EyeDropper API not supported in this browser</span>
+        <button onClick={pickColor}>Pick color</button>
+      : <span>EyeDropper API not supported in this browser</span>
       }
       
       {/* Palette */}
       <Palette paletteColors={paletteColors} />
 
       {/* <Export /> */}
-      <section id="export" className="container">
-        <button type="button" onClick={resetPalette}>
-            Export Palette
-        </button>
-      </section>
+      <button type="button" onClick={resetPalette}>
+          Export Palette
+      </button>
     </>
   )
 };
