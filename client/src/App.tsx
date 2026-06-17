@@ -1,6 +1,7 @@
 import './App.css';
 // import { Export } from './components/Export'; 
 // import { ViewPort } from './components/ViewPort';
+import convert from 'color-convert';
 import type { PaletteColors, Color } from './types/Colors';
 import type { DropperError } from './types/DropperError';
 import { Palette } from './components/Palette';
@@ -38,8 +39,8 @@ const App = () => {
       // Selectable text
       doc.setFontSize(11);
       doc.setTextColor(0);
-      doc.text(hex, 30, y + 8);
-
+      doc.text(`HEX: ${hex.toUpperCase()}`, 30, y + 8);
+      doc.text(`CMYK: ${convert.hex.cmyk(hex)}`, 30, y + 16);
     });
 
     doc.save('palette.pdf');
