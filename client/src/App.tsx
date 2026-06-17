@@ -1,20 +1,35 @@
+//----------------------------
+// Components
+//----------------------------
 import './App.css';
-// import { Export } from './components/Export'; 
-import convert from 'color-convert';
 import type { PaletteColors, Color } from './types/Colors';
 import type { DropperError } from './types/DropperError';
 import { Palette } from './components/Palette';
+// import { Export } from './components/Export'; 
+
+//----------------------------
+// Hooks
+//----------------------------
+import { usePalette } from './hooks/usePalette';
+
+//----------------------------
+// Dependencies
+//----------------------------
+import { jsPDF } from 'jspdf';
+import convert from 'color-convert';
 import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
-import { jsPDF } from 'jspdf';
 
+//----------------------------
+// Entry Point
+//----------------------------
 const App = () => {
   const { open, isSupported } = useEyeDropper();
 
   // Hooks
   const [color, setColor] = useState<Color>('#ffffff');
   const [error, setError] = useState<DropperError | null>(null);
-  const [paletteColors, setPaletteColors] = useState<PaletteColors['colors']>([]);
+  const {paletteColors, setPaletteColors} = usePalette();
 
 
   // Callbacks
