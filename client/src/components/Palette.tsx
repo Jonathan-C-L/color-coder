@@ -1,5 +1,7 @@
+import type { Color } from '../types/Colors';
+
 type PaletteProps = {
-    paletteColors: string[];
+    paletteColors: Color[];
 }
 
 export const Palette = ({ paletteColors }: PaletteProps) => {

@@ -1,19 +1,12 @@
 import './App.css';
 // import { Export } from './components/Export'; 
 // import { ViewPort } from './components/ViewPort';
+import type { PaletteColors, Color } from './types/Colors';
+import type { DropperError } from './types/DropperError';
 import { Palette } from './components/Palette';
 import useEyeDropper from 'use-eye-dropper';
 import { useState, useCallback } from 'react';
-
-// Global variables
-
-type DropperError = { 
-  message: string
-  canceled?: boolean
-}
-type PaletteColors = {
-  colors: string[];
-}
+import { jsPDF } from 'jspdf';
 
 
 // const isError = <T, >(err: DropperError | T): err is DropperError => 
@@ -26,11 +19,34 @@ const App = () => {
   const { open, isSupported } = useEyeDropper();
 
   // Hooks
-  const [color, setColor] = useState<string>('#ffffff');
+  const [color, setColor] = useState<Color>('#ffffff');
   const [error, setError] = useState<DropperError | null>(null);
   const [paletteColors, setPaletteColors] = useState<PaletteColors['colors']>([]);
 
+
   // Callbacks
+  const exportPalette = (palette: PaletteColors['colors']) => {
+    const doc = new jsPDF();
+
+    palette.forEach((hex, i) => {
+      const y = 20 + i * 20;
+
+      // Individual palette color
+      doc.setFillColor(hex);
+      doc.rect(10, y, 15, 22, 'F');
+
+      // Selectable text
+      doc.setFontSize(11);
+      doc.setTextColor(0);
+      doc.text(hex, 30, y + 8);
+
+    });
+
+    doc.save('palette.pdf');
+
+    resetPalette();
+  };
+
   const resetPalette = useCallback(() => {
     setPaletteColors([]);
   }, []);
@@ -79,7 +95,7 @@ const App = () => {
       <Palette paletteColors={paletteColors} />
 
       {/* <Export /> */}
-      <button type="button" onClick={resetPalette}>
+      <button type="button" onClick={() => exportPalette(paletteColors)}>
           Export Palette
       </button>
     </>
