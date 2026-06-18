@@ -11,7 +11,6 @@ import { useCallback } from 'react';
 //----------------------------
 import './App.css';
 import type { PaletteColors } from './types/Color';
-import type { DropperError } from './types/DropperError';
 import { Palette } from './components/Palette';
 // import { Export } from './components/Export'; 
 
@@ -19,18 +18,16 @@ import { Palette } from './components/Palette';
 // Hooks
 //----------------------------
 import { usePalette } from './hooks/usePalette';
-import { useError } from './hooks/useError';
 import { useColor } from './hooks/useColor';
 
 //----------------------------
 // Entry Point
 //----------------------------
 const App = () => {
-  const { open, isSupported } = useEyeDropper();
+  const { isSupported } = useEyeDropper();
 
   // Hooks
-  const {color, setColor} = useColor();
-  const {error, setError} = useError();
+  const {color, pickColor} = useColor();
   const {paletteColors, setPaletteColors} = usePalette();
 
 
@@ -52,6 +49,7 @@ const App = () => {
       doc.text(`CMYK: ${convert.hex.cmyk(hex)}`, 30, y + 16);
     });
 
+    // Save PDF - palette.pdf is default name
     doc.save('palette.pdf');
 
     resetPalette();
@@ -63,32 +61,32 @@ const App = () => {
 
   // useEyeDropper will reject/cleanup the open() promise on unmount,
   // so setState never fires when the component is unmounted.
-  const pickColor = useCallback(() => {
-    // Using async/await (can be used as a promise as-well)
-    const openPicker = async () => {
-      try {
-        const color = await open();
-        const hexCode = color.sRGBHex.toUpperCase();
+  // const pickColor = useCallback(() => {
+  //   // Using async/await (can be used as a promise as-well)
+  //   const openPicker = async () => {
+  //     try {
+  //       const color = await open();
+  //       const hexCode = color.sRGBHex.toUpperCase();
 
-        // Display selected color
-        setColor(hexCode);
-        // Add color to palette
-        setPaletteColors(prev => {
-          const updated =[...prev, hexCode];
-          console.log(updated); // Diagnostics
-          return updated;
-        });
+  //       // Display selected color
+  //       setColor(hexCode);
+  //       // Add color to palette
+  //       setPaletteColors(prev => {
+  //         const updated =[...prev, hexCode];
+  //         console.log(updated); // Diagnostics
+  //         return updated;
+  //       });
 
-      } catch (e: DropperError | any) {
-        // Ensures component is still mounted
-        // before calling setState
-        if (!e.canceled) setError(e);
-        // Here just to satisfy the linter, but this should never be hit since the error state is only set if the component is still mounted.
-        if (error) return; 
-      }
-    };
-    openPicker();
-  }, [open]);
+  //     } catch (e: DropperError | any) {
+  //       // Ensures component is still mounted
+  //       // before calling setState
+  //       if (!e.canceled) setError(e);
+  //       // Here just to satisfy the linter, but this should never be hit since the error state is only set if the component is still mounted.
+  //       if (error) return; 
+  //     }
+  //   };
+  //   openPicker();
+  // }, [open]);
 
   return (
     <>
