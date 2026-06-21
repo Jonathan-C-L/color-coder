@@ -4,6 +4,7 @@ import { Export } from './components/Export';
 import { Palette } from './components/Palette';
 import { usePalette } from './hooks/usePalette';
 import { useColor } from './hooks/useColor';
+import { useEffect } from 'react';
 
 //----------------------------
 // Entry Point
@@ -13,7 +14,14 @@ const App = () => {
 
   // Hooks
   const {paletteColors, addColor } = usePalette();
-  const {color, pickColor} = useColor('#000000', addColor);
+  const {color, pickColor} = useColor('');
+
+  // Prevents dups
+  useEffect(() => {
+    if (color) 
+      addColor(color);
+  }, [color, addColor]);
+
 
   return (
     <>

@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import useEyeDropper from 'use-eye-dropper';
 import { useError } from './useError';
 
-export const useColor = (startColor = '#000000', onPick?: (color: Color) => void) => {
+export const useColor = (startColor = '', onPick?: (color: Color) => void) => {
     const [color, setColor] = useState<Color>(startColor);
     const { open } = useEyeDropper();
     const { error, setError } = useError();
@@ -30,7 +30,7 @@ export const useColor = (startColor = '#000000', onPick?: (color: Color) => void
             }
         };
         openPicker();
-    }, [open, onPick]);
+    }, [open, onPick]); // onPick allows adding colors when a color selected (dups allowed)
 
     return {color, pickColor};
 };
