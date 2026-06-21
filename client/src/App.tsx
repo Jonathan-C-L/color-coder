@@ -1,5 +1,6 @@
 import useEyeDropper from 'use-eye-dropper';
 import './App.css';
+import { ColorSelection } from './components/ColorSelection';
 import { Export } from './components/Export';
 import { Palette } from './components/Palette';
 import { usePalette } from './hooks/usePalette';
@@ -11,12 +12,10 @@ import { useEffect } from 'react';
 //----------------------------
 const App = () => {
   const { isSupported } = useEyeDropper();
+  const { paletteColors, addColor } = usePalette();
+  const { color, pickColor } = useColor();
 
-  // Hooks
-  const {paletteColors, addColor } = usePalette();
-  const {color, pickColor} = useColor('');
-
-  // Prevents dups
+  // Prevents dups on color selection
   useEffect(() => {
     if (color) 
       addColor(color);
@@ -26,9 +25,10 @@ const App = () => {
   return (
     <>
       {/* Color selection */}
-      <div className="color-codes" style={{ background: color }}>
+      {/* <div className="color-codes" style={{ background: color }}>
         {color}
-      </div>
+      </div> */}
+      <ColorSelection selected={color}/>
 
       {/* Color picker */}
       {isSupported() ?  
