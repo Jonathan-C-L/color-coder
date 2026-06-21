@@ -8,9 +8,12 @@ export const usePalette = (initial: PaletteColors['current'] = []) => {
     //Add color to palette
     const addColor = useCallback((hex: Color) => {
         setPaletteColors(prev => {
-            return [...prev, hex];
+            // Prevent duplicate colors in exported palette
+            if (!prev.includes(hex))
+                return [...prev, hex];
+            
+            return prev;
         });
-        console.log(paletteColors); // Diagnostics
     }, []); 
 
     const resetPalette = useCallback(() => {

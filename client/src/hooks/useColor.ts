@@ -30,7 +30,7 @@ export const useColor = (startColor = '', onPick?: (color: Color) => void) => {
             }
         };
         openPicker();
-    }, [open, onPick]); // onPick allows adding colors when a color selected (dups allowed)
+    }, [open, onPick]); // onPick allows adding colors when a color selected
 
     return {color, pickColor};
 };
