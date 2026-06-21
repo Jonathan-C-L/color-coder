@@ -1,14 +1,17 @@
-// interface MainProps {
-//     count: number;
-//     setCount: (operation: (value:number) => number) => void;
-// }
+import type { Color } from '../types/Color';
+import { exportPalette } from '../services/exportPalette';
+import { usePalette } from '../hooks/usePalette';
 
-export const Export = () => {
+type ExportProp = {
+    exportColors: Color[];
+}
+
+export const Export = ({ exportColors }: ExportProp) => {
+    const { resetPalette } = usePalette();
+
     return (
-        <section id="export" className="container">
-            <button type="button">
-                Export Palette
-            </button>
-        </section>
+        <button type="button" onClick={() => exportPalette(exportColors).then(resetPalette)}>
+            Export Palette
+        </button>
     );
 };
