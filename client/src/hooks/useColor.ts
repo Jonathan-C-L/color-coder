@@ -1,8 +1,9 @@
 import type { Color } from '../types/Color';
-import type { DropperError } from '../types/DropperError';
-import { useState, useCallback } from 'react';
 import useEyeDropper from 'use-eye-dropper';
+import { useState, useCallback } from 'react';
 import { useError } from './useError';
+import { isNotCanceled } from '../utils/Dropper.Error';
+
 
 export const useColor = (startColor = '', onPick?: (color: Color) => void) => {
     const [color, setColor] = useState<Color>(startColor);
@@ -21,10 +22,10 @@ export const useColor = (startColor = '', onPick?: (color: Color) => void) => {
                 // Display selected color
                 setColor(picked);
                 onPick?.(picked);
-            } catch (e: DropperError | any) {
+            } catch (e: unknown) {
                 // Ensures component is still mounted
                 // before calling setState
-                if (!e.canceled) setError(e);
+                if (isNotCanceled(e)) setError(e);
                 // Here just to satisfy the linter, but this should never be hit since the error state is only set if the component is still mounted.
                 if (error) return; 
             }
