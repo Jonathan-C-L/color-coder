@@ -18,15 +18,7 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <ColorSelection selected={color}/>
-        {isSupported() ?  
-          <button onClick={pickColor}>Select Color</button>
-        : <span>EyeDropper API not supported in this browser</span>
-        }
-      </div>
-      
-      
+      <ColorSelection selected={color} supported={isSupported} colorSelect={pickColor}/>
       <Palette paletteColors={paletteColors}/>
       <div>
         <Undo paletteColors={paletteColors} undoCallback={undoChoice}/>
