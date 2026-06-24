@@ -1,17 +1,15 @@
 import type { Color } from '../types/Color';
 import { exportPalette } from '../services/exportPalette';
-import { usePalette } from '../hooks/usePalette';
 
 type ExportProp = {
     exportColors: Color[];
+    reset: () => void;
 }
 
-export const Export = ({ exportColors }: ExportProp) => {
-    const { resetPalette } = usePalette();
-
+export const Export = ({ exportColors, reset }: ExportProp) => {
     return (
-        <button type="button" onClick={() => exportPalette(exportColors).then(resetPalette)}>
-            Export Palette
+        <button type="button" onClick={() => exportPalette(exportColors).then(reset)}>
+            Export
         </button>
     );
 };
