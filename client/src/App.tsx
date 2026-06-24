@@ -13,24 +13,25 @@ import { useColor } from './hooks/useColor';
 //----------------------------
 const App = () => {
   const { isSupported } = useEyeDropper();
-  const { paletteColors, addColor, resetPalette } = usePalette();
+  const { paletteColors, addColor, undoChoice, resetPalette } = usePalette();
   const { color, pickColor } = useColor('Choose a Color!', addColor);
 
   return (
     <>
-      <ColorSelection selected={color}/>
-
-      {/* Color picker */}
-      {isSupported() ?  
-        <button onClick={pickColor}>Pick color</button>
-      : <span>EyeDropper API not supported in this browser</span>
-      }
+      <div>
+        <ColorSelection selected={color}/>
+        {isSupported() ?  
+          <button onClick={pickColor}>Select Color</button>
+        : <span>EyeDropper API not supported in this browser</span>
+        }
+      </div>
+      
       
       <Palette paletteColors={paletteColors}/>
       <div>
-        <Undo/>
-        <Cancel reset={resetPalette}/>
-        <Export exportColors={paletteColors} reset={resetPalette}/>
+        <Undo paletteColors={paletteColors} undoCallback={undoChoice}/>
+        <Cancel resetCallback={resetPalette}/>
+        <Export exportColors={paletteColors} resetCallback={resetPalette}/>
       </div>
     </>
   )

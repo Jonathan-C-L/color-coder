@@ -3,12 +3,12 @@ import { exportPalette } from '../services/exportPalette';
 
 type ExportProp = {
     exportColors: Color[];
-    reset: () => void;
+    resetCallback: () => void;
 }
 
-export const Export = ({ exportColors, reset }: ExportProp) => {
+export const Export = ({ exportColors, resetCallback }: ExportProp) => {
     return (
-        <button type="button" onClick={() => exportPalette(exportColors).then(reset)}>
+        <button type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
             Export
         </button>
     );

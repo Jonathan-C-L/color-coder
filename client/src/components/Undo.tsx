@@ -1,6 +1,13 @@
-export const Undo = () => {
+import type { Color } from '../types/Color';
+
+type UndoProp = {
+    paletteColors: Color[];
+    undoCallback: () => void;
+}
+
+export const Undo = ({undoCallback}: UndoProp) => {
     return (
-        <button type="button" onClick={() => console.log("Undo button")}>
+        <button type="button" onClick={undoCallback}>
             Undo
         </button>
     );
