@@ -1,6 +1,6 @@
 import type { PaletteColors } from '../types/Color';
 
-export const exportPalette = async (palette: PaletteColors['current']) => {
+export const exportPalette = async (palette: PaletteColors) => {
   const [{ jsPDF }, { default: convert }] = await Promise.all([
     import('jspdf'),
     import('color-convert')

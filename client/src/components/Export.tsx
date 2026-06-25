@@ -1,8 +1,8 @@
-import type { Color } from '../types/Color';
+import type { PaletteColors } from '../types/Color';
 import { exportPalette } from '../services/exportPalette';
 
 type ExportProp = {
-    exportColors: Color[];
+    exportColors: PaletteColors;
     resetCallback: () => void;
 }
 

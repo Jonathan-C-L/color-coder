@@ -5,6 +5,7 @@ import { Export } from './components/Export';
 import { Palette } from './components/Palette';
 import { Cancel } from './components/Cancel';
 import { Undo } from './components/Undo';
+import { History } from './components/History';
 import { usePalette } from './hooks/usePalette';
 import { useColor } from './hooks/useColor';
 
@@ -20,11 +21,13 @@ const App = () => {
     <>
       <ColorSelection selected={color} supported={isSupported} colorSelect={pickColor}/>
       <Palette paletteColors={paletteColors}/>
-      <div>
+      
+      <div id='options'>
         <Undo paletteColors={paletteColors} undoCallback={undoChoice}/>
         <Cancel resetCallback={resetPalette}/>
         <Export exportColors={paletteColors} resetCallback={resetPalette}/>
       </div>
+      <History/>
     </>
   )
 };

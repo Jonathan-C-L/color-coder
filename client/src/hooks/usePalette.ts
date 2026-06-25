@@ -1,8 +1,8 @@
 import type { PaletteColors, Color } from '../types/Color';
 import { useState, useCallback } from 'react';
 
-export const usePalette = (initial: PaletteColors['current'] = []) => {
-    const [paletteColors, setPaletteColors] = useState<PaletteColors['current']>(initial);
+export const usePalette = (initial: PaletteColors = []) => {
+    const [paletteColors, setPaletteColors] = useState<PaletteColors>(initial);
 
     //Add color to palette
     const addColor = useCallback((hex: Color) => {
