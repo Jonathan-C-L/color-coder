@@ -8,7 +8,7 @@ type ExportProp = {
 
 export const Export = ({ exportColors, resetCallback }: ExportProp) => {
     return (
-        <button type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
+        <button className="action-row__export" type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
             Export
         </button>
     );

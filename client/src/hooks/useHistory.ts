@@ -1,4 +1,5 @@
-/// <reference types="chrome" />
+// Required for use of chrome namespace
+/// <reference types="chrome" /> 
 
 import { useState, useCallback } from 'react';
 import type { PaletteColors, PaletteHistoryEntry } from '../types/Color';
@@ -34,5 +35,5 @@ export const useHistory = () => {
         chrome.storage.local.set({[STORAGE_KEY]: []});
     }, []);
 
-    return {history, setHistory};
+    return {history, addToHistory, removeFromHistory, deleteHistory};
 }

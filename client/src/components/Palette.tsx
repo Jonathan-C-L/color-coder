@@ -7,11 +7,14 @@ type PaletteProps = {
 export const Palette = ({ paletteColors }: PaletteProps) => {
     return (
         <div id="palette" className="display">
-            {paletteColors.map((color, index) => (
-                <div className="color-codes" key={index} style={{ background: color }}>
-                    {color}
-                </div>
+            <div className="palette-header">
+                <div className="palette-header__label">Palette</div>
+            </div>
+            <div className="palette-grid">
+                {paletteColors.map((color, index) => (
+                <div className="palette-swatch" key={index} style={{ background: color }}></div>
             ))}
+            </div>
         </div>
     );
 };
