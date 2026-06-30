@@ -1,11 +1,11 @@
-type CancelProp = {
+type ResetProp = {
     resetCallback: () => void;
 }
 
-export const Cancel = ({resetCallback}: CancelProp) => {
+export const Reset = ({resetCallback}: ResetProp) => {
     return (
         <button type="button" onClick={() => resetCallback()}>
-            Cancel
+            Reset
         </button>
     );
 };

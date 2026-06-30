@@ -1,14 +1,14 @@
-import type { Color } from '../types/Color';
+import type { PaletteColors } from '../types/Color';
 import { exportPalette } from '../services/exportPalette';
 
 type ExportProp = {
-    exportColors: Color[];
+    exportColors: PaletteColors;
     resetCallback: () => void;
 }
 
 export const Export = ({ exportColors, resetCallback }: ExportProp) => {
     return (
-        <button type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
+        <button className="action-row__export" type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
             Export
         </button>
     );
