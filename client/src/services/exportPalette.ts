@@ -1,22 +1,35 @@
-import type { PaletteColors } from '../types/Color';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import convert from 'color-convert';
 
-export const exportPalette = async (palette: PaletteColors) => {
-  const [{ jsPDF }, { default: convert }] = await Promise.all([
-    import('jspdf'),
-    import('color-convert')
-  ]);
+export const exportPalette = async (colors: string[]) => {
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage();
+  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const { height } = page.getSize();
 
-  const doc = new jsPDF();
+  colors.forEach((hex, i) => {
+    const y = height - 40 - i * 40;
+    const [r, g, b] = convert.hex.rgb(hex).map(c => c / 255); // 0–1 range for pdf-lib
 
-  palette.forEach((hex, i) => {
-    const y = 20 + i * 20;
-    doc.setFillColor(hex);
-    doc.rect(10, y, 15, 22, 'F');
-    doc.setFontSize(11);
-    doc.setTextColor(0);
-    doc.text(`HEX: ${hex}`, 30, y + 8);
-    doc.text(`CMYK: ${convert.hex.cmyk(hex)}`, 30, y + 16);
+    // Color swatches
+    page.drawRectangle({
+      x: 10, y: y - 12,
+      width: 15, height: 22,
+      color: rgb(r, g, b),
+    });
+
+    // Color codes
+    page.drawText(`HEX: ${hex}`, { x: 30, y, size: 11, font });
+    page.drawText(`CMYK: ${convert.hex.cmyk(hex)}`, { x: 30, y: y - 12, size: 11, font });
   });
+  
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
 
-  doc.save('palette.pdf');
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'palette.pdf';
+  a.click();
+  URL.revokeObjectURL(url);
 };
