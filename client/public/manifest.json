@@ -13,13 +13,12 @@
   "side_panel": {
     "default_path": "index.html"
   },
+  "icons": {
+    "128": "icon128.png"
+  },
   "permissions": [
     "scripting",
     "sidePanel",
     "activeTab"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
   ]
 }
