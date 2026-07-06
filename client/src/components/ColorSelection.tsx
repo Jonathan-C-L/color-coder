@@ -2,7 +2,7 @@ import type { Color } from "../types/Color";
 
 type SelectionProp = {
     selected: Color;
-    supported: () => boolean;
+    supported: boolean;
     colorSelect: () => void;
 }
 
@@ -17,7 +17,7 @@ export const ColorSelection = ({ selected, supported, colorSelect }: SelectionPr
                 {/* THIS WILL BECOME THE COPY FUNCTION LATER */}
                 <div className="color-preview__swatch" style={{ background: selected }}></div>
             </div>
-            {supported() ?  
+            {supported ?  
             <button className="pick-button" onClick={colorSelect}>Select Color</button>
             : <span>EyeDropper API not supported in this browser</span>
             }

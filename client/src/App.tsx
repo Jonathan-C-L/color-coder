@@ -17,6 +17,9 @@ const App = () => {
   const { paletteColors, addColor, undoChoice, resetPalette } = usePalette();
   const { color, pickColor } = useColor("Build Your Palette!", addColor);
 
+  // One time call to check if the EyeDropper API is supported in the browser. This is used to conditionally render the color selection button.
+  const dropperSupported = isSupported();
+
   return (
     <div className="app">
       {/* Header */}
@@ -24,7 +27,7 @@ const App = () => {
         <span>Color Picker</span>
       </header>
 
-      <ColorSelection selected={color} supported={isSupported} colorSelect={pickColor}/>
+      <ColorSelection selected={color} supported={dropperSupported} colorSelect={pickColor}/>
       <Palette paletteColors={paletteColors}/>
       
       <div className="action-row">
