@@ -1,3 +1,11 @@
+// import type { PaletteColors, PaletteHistoryEntry } from "../types/Color";
+
+// type HistoryProp = {
+//     entries: PaletteHistoryEntry[];
+//     onRestore?: (colors: PaletteColors) => void;
+//     onDelete?: (id: string) => void;
+// }
+
 export const History = () => {
     return (
         <section className="history">

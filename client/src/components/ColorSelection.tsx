@@ -1,4 +1,5 @@
 import type { Color } from "../types/Color";
+import { IconCopy } from "@tabler/icons-react";
 
 type SelectionProp = {
     selected: Color;
@@ -15,7 +16,8 @@ export const ColorSelection = ({ selected, supported, colorSelect }: SelectionPr
                     <div className="color-preview__hex">{selected}</div>
                 </div>
                 {/* THIS WILL BECOME THE COPY FUNCTION LATER */}
-                <div className="color-preview__swatch" style={{ background: selected }}></div>
+                {/* <div className="color-preview__swatch" style={{ background: selected }}></div> */}
+                <IconCopy className="color-preview__copy" />
             </div>
             {supported ?  
             <button className="pick-button" onClick={colorSelect}>Select Color</button>
