@@ -117,6 +117,7 @@ button:disabled {
 }
 
 .color-preview__copy {
+  border: none;
   font-size: 16px;
   color: var(--text-secondary);
   cursor: pointer;
