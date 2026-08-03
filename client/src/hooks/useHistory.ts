@@ -4,7 +4,7 @@
 import { useState, useCallback } from 'react';
 import type { PaletteColors, PaletteHistoryEntry } from '../types/Color';
 
-const STORAGE_KEY = 'paletteHistory';
+// const STORAGE_KEY = 'paletteHistory';
 
 export const useHistory = () => {
     const [history, setHistory] = useState<PaletteHistoryEntry[]>([]);
@@ -17,7 +17,7 @@ export const useHistory = () => {
         
         setHistory(prev => {
             const updated = [newEntry, ...prev];
-            chrome.storage.local.set({[STORAGE_KEY]: updated});
+            // chrome.storage.local.set({[STORAGE_KEY]: updated});
             return updated;
         });
     }, []);
@@ -25,14 +25,14 @@ export const useHistory = () => {
     const removeFromHistory = useCallback((removeId: string) => {
         setHistory(prev => {
             const updated = prev.filter(entry => entry.id != removeId);
-            chrome.storage.local.set({[STORAGE_KEY]: updated});
+            // chrome.storage.local.set({[STORAGE_KEY]: updated});
             return updated;
         });
     }, []);
 
     const deleteHistory = useCallback(() => {
         setHistory([]);
-        chrome.storage.local.set({[STORAGE_KEY]: []});
+        // chrome.storage.local.set({[STORAGE_KEY]: []});
     }, []);
 
     return {history, addToHistory, removeFromHistory, deleteHistory};

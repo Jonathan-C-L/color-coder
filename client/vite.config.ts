@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    chunkSizeWarningLimit: 1000 // 1000kB warning as jsPDF exceeds 500kB threshold
+    chunkSizeWarningLimit: 1000. // 1000kB warning as jsPDF exceeds 500kB threshold
   }
 })
