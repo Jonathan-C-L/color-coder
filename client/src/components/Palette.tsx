@@ -10,6 +10,10 @@ export const Palette = ({ paletteColors }: PaletteProps) => {
             <div className="palette-header">
                 <div className="palette-header__label">Palette</div>
             </div>
+
+            {/* Conditionally show palette empty message */}
+            {paletteColors.length === 0 && <p className="palette-empty">No colors in palette.</p>}
+
             <div className="palette-grid">
                 {paletteColors.map((color, index) => (
                 <div className="palette-swatch" key={index} style={{ background: color }}></div>
