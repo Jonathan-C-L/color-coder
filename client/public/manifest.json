@@ -1,10 +1,10 @@
 {
-  "name": "Color Coder",
-  "description": "Extention automates color identification, assembly, and export of your color palette.",
-  "version": "1.0.0.2",
+  "name": "Palette Builder",
+  "description": "Automate your color identification and palette assembly!",
+  "version": "1.1.0",
   "manifest_version": 3,
   "action": {
-    "default_title": "Color Coder"
+    "default_title": "Palette Builder"
   },
   "background": {
     "service_worker": "service-worker.js",
