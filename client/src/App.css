@@ -302,13 +302,13 @@ button:disabled {
 
 .history-row__swatches {
   display: flex;
-  gap: 2px;
+  gap: 3px;
   flex-shrink: 0;
 }
 
 .history-row__swatch {
-  width: 14px;
-  height: 14px;
+  width: 24px;
+  height: 24px;
   border-radius: 3px;
   border: 0.5px solid var(--border-subtle);
   flex-shrink: 0;
@@ -342,6 +342,11 @@ button:disabled {
   font-size: 14px;
   color: var(--text-tertiary);
   cursor: pointer;
+}
+
+.history-row__delete:hover {
+  color: var(--accent-danger);
+  background: rgba(192, 57, 43, 0.08);
 }
 
 .history-empty, .palette-empty {
