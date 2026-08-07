@@ -16,9 +16,9 @@ export const History = ({entries, onDelete, clearHistory, onRetrieve}: HistoryPr
         <section className="history">
             <header className="history-header">
                 <label className="history-header__label">History</label>
-                <div className="history-header__clear" onClick={clearHistory}>
+                <button className="history-header__clear" onClick={clearHistory}>
                     <IconTrash size={config.ICON_SIZE} />
-                </div>
+                </button>
             </header>
 
             {/* Conditionally show history empty message */}

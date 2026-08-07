@@ -1,8 +1,9 @@
 /* App.css */
 
+/* ---------- Light Mode (Default) ---------- */
 :root {
   --surface-bg: #ffffff;
-  --surface-hover: rgba(0, 0, 0, 0.03);
+  --surface-hover: rgba(0, 0, 0, 0.12);
 
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.15);
@@ -20,22 +21,6 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --transition-fast: 0.15s ease;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-
-.app {
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
 }
 
 /* ---------- Dark Mode ---------- */
@@ -58,6 +43,21 @@ body {
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.app {
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
 
 /* ---------- Header ---------- */
 
@@ -87,7 +87,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--surface-hover);
 }
 
 button:active:not(:disabled) {
