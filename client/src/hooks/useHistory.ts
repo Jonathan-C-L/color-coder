@@ -23,9 +23,9 @@ export const useHistory = () => {
         });
     }, []);
 
-    const deleteHistory = useCallback(() => {
+    const clearHistory = useCallback(() => {
         setHistory([]);
     }, []);
 
-    return {history, addToHistory, removeFromHistory, deleteHistory};
+    return {history, addToHistory, removeFromHistory, clearHistory};
 }

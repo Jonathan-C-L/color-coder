@@ -26,5 +26,9 @@ export const usePalette = (initial: PaletteColors = []) => {
         });
     }, []);
 
-    return {paletteColors, addColor, undoChoice, resetPalette};
+    const retrieveFromHistory = useCallback((colors: PaletteColors) => {
+        setPaletteColors(colors);
+    }, []);
+
+    return {paletteColors, addColor, undoChoice, resetPalette, retrieveFromHistory};
 };

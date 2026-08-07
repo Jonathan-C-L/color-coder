@@ -291,6 +291,7 @@ button:disabled {
   justify-content: space-between;
   gap: 10px;
   padding: 8px;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   transition: background var(--transition-fast);
   cursor: default;

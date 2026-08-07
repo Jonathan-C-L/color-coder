@@ -15,9 +15,9 @@ import { useHistory } from './hooks/useHistory';
 //----------------------------
 const App = () => {
   const { isSupported } = useEyeDropper();
-  const { paletteColors, addColor, undoChoice, resetPalette } = usePalette();
+  const { paletteColors, addColor, undoChoice, resetPalette, retrieveFromHistory } = usePalette();
   const { color, pickColor } = useColor("Build Your Palette!", addColor);
-  const { history, addToHistory, removeFromHistory, deleteHistory} = useHistory();
+  const { history, addToHistory, removeFromHistory, clearHistory } = useHistory();
 
   // One time call to check if the EyeDropper API is supported in the browser. This is used to conditionally render the color selection button.
   const dropperSupported = isSupported();
@@ -38,7 +38,7 @@ const App = () => {
         <Export exportColors={paletteColors} resetCallback={resetPalette} updateHistory={addToHistory}/>
       </div>
             
-      <History entries={history} onDelete={removeFromHistory} clearHistory={deleteHistory}/>
+      <History entries={history} onDelete={removeFromHistory} clearHistory={clearHistory} onRetrieve={retrieveFromHistory} />
     </div>
   )
 };
