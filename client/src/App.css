@@ -1,7 +1,6 @@
 /* App.css */
 
 :root {
-  --panel-bg: #f4f3ee;
   --surface-bg: #ffffff;
   --surface-hover: rgba(0, 0, 0, 0.03);
 
@@ -35,7 +34,6 @@ body {
 }
 
 .app {
-  background: var(--panel-bg);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
 }
@@ -43,7 +41,6 @@ body {
 /* ---------- Dark Mode ---------- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --panel-bg:           #1c1c1e;
     --surface-bg:         #2c2c2e;
     --surface-hover:      rgba(255, 255, 255, 0.05);
 
@@ -159,6 +156,7 @@ button:disabled {
 /* ---------- Palette section ---------- */
 
 .palette-header {
+  border-bottom: 1px solid var(--border-dashed);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -250,6 +248,7 @@ button:disabled {
 }
 
 .history-header {
+  border-bottom: 1px solid var(--border-dashed);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -279,10 +278,14 @@ button:disabled {
 }
 
 .history-list {
-  display: flex;
+  max-height: 46dvh;
+  scrollbar-width: thin;
+  overflow-y: scroll;
+  overflow-x: hidden;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   padding: 0;
+  display: flex;
 }
 
 .history-row {
