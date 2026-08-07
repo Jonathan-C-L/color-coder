@@ -1,5 +1,7 @@
 import type { PaletteColors } from '../types/Color';
 import { exportPalette } from '../services/exportPalette';
+import { config } from '../config/config';
+import { IconFileExport } from '@tabler/icons-react';
 
 type ExportProp = {
     exportColors: PaletteColors;
@@ -22,6 +24,7 @@ export const Export = ({ exportColors, resetCallback, updateHistory }: ExportPro
 
     return (
         <button className="action-row__export" type="button" onClick={handleExport}>
+            <IconFileExport size={config.ICON_SIZE} />
             Export
         </button>
     );
