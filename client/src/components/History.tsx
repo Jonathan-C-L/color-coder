@@ -1,5 +1,7 @@
+import { config } from "../config/config";
 import type { PaletteColors, PaletteHistoryEntry } from "../types/Color";
 import { IconTrash } from "@tabler/icons-react";
+
 
 type HistoryProp = {
     entries: PaletteHistoryEntry[];
@@ -9,15 +11,13 @@ type HistoryProp = {
     onRetrieve?: (colors: PaletteColors) => void;
 }
 
-const HISTORY_SWATCH_SIZE = 24;
-
 export const History = ({entries, onDelete, clearHistory, onRetrieve}: HistoryProp) => {
     return (
         <section className="history">
             <header className="history-header">
                 <label className="history-header__label">History</label>
                 <div className="history-header__clear" onClick={clearHistory}>
-                    <IconTrash size={16} />
+                    <IconTrash size={config.ICON_SIZE} />
                 </div>
             </header>
 
@@ -29,7 +29,7 @@ export const History = ({entries, onDelete, clearHistory, onRetrieve}: HistoryPr
                     <li className="history-row" key={entry.id} onClick={() => onRetrieve && onRetrieve(entry.colors)}>
                         <div className="history-row__swatches">
                             {entry.colors.map((c, i) => (
-                                <span className="history-row__swatch" key={i} style={{ background: c, width: HISTORY_SWATCH_SIZE, height: HISTORY_SWATCH_SIZE, display: 'inline-block' }} />
+                                <span className="history-row__swatch" key={i} style={{ background: c, width: config.HISTORY_SWATCH_SIZE, height: config.HISTORY_SWATCH_SIZE, display: 'inline-block' }} />
                             ))}
                         </div>
                         {onDelete && <button className="history-row__delete" onClick={() => onDelete(entry.id)}>Delete</button>}

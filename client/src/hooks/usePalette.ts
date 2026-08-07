@@ -1,7 +1,6 @@
 import type { PaletteColors, Color } from '../types/Color';
 import { useState, useCallback } from 'react';
-
-const MAX_PALETTE_SIZE = 8;
+import { config } from '../config/config';
 
 export const usePalette = (initial: PaletteColors = []) => {
     const [paletteColors, setPaletteColors] = useState<PaletteColors>(initial);
@@ -10,7 +9,7 @@ export const usePalette = (initial: PaletteColors = []) => {
     const addColor = useCallback((hex: Color) => {
         setPaletteColors(prev => {
             // Prevent duplicate colors in exported palette AND limit palette size to MAX_PALETTE_SIZE
-            if (!prev.includes(hex) && prev.length < MAX_PALETTE_SIZE)
+            if (!prev.includes(hex) && prev.length < config.MAX_PALETTE_SIZE)
                 return [...prev, hex];
 
             return prev;

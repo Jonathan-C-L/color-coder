@@ -1,6 +1,7 @@
 import type { Color } from "../types/Color";
 import { IconCopy, IconCheck } from "@tabler/icons-react";
 import { useState, useCallback } from "react";
+import { config } from "../config/config";
 
 type SelectionProp = {
     selected: Color;
@@ -31,7 +32,7 @@ export const ColorSelection = ({ selected, supported, colorSelect }: SelectionPr
                     <div className="color-preview__hex">{selected}</div>
                 </div>
                 <button className="color-preview__copy" onClick={copyToClipBoard} disabled={!selected}>
-                    {copied ? <IconCheck /> : <IconCopy />}
+                    {copied ? <IconCheck size={config.ICON_SIZE} /> : <IconCopy size={config.ICON_SIZE} />}
                 </button>
             </div>
             {supported ?  
