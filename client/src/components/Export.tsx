@@ -4,11 +4,24 @@ import { exportPalette } from '../services/exportPalette';
 type ExportProp = {
     exportColors: PaletteColors;
     resetCallback: () => void;
+    updateHistory?: (colors: PaletteColors) => void;
 }
 
-export const Export = ({ exportColors, resetCallback }: ExportProp) => {
+export const Export = ({ exportColors, resetCallback, updateHistory }: ExportProp) => {
+    const handleExport = async () => {
+        if (exportColors.length === 0) return;
+
+        try {
+            await exportPalette(exportColors);
+            resetCallback();
+            updateHistory && updateHistory(exportColors);
+        } catch (err) {
+            console.error(`Failed to export palette: ${err}`);
+        }
+    }
+
     return (
-        <button className="action-row__export" type="button" onClick={() => exportPalette(exportColors).then(resetCallback)}>
+        <button className="action-row__export" type="button" onClick={handleExport}>
             Export
         </button>
     );
